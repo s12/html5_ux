@@ -1,0 +1,30 @@
+<?php
+function html5_ux_install(){
+  $pre = "html5_ux_";
+
+  $vars = array(
+    $pre."modernizr.js" => TRUE,
+    $pre."migrate.js" => TRUE,
+    $pre."fix.js" => TRUE,
+    $pre."fix.css" => TRUE,
+  );
+
+  foreach($vars as $name => $value){
+    variable_set($name, $value);
+  }
+}
+
+function html5_ux_uninstall(){
+  $pre = "html5_ux_";
+
+  $vars = array(
+    $pre."modernizr.js" => TRUE,
+    $pre."migrate.js" => TRUE,
+    $pre."fix.js" => TRUE,
+    $pre."fix.css" => TRUE,
+  );
+
+  foreach($vars as $name => $value){
+    variable_del($name);
+  }
+}

@@ -1,0 +1,5 @@
+name = HTML5 User Experience
+description = Adds ccs/js for HTML5 compatibility.
+dependencies[] = jquery_update
+group = @WhiteFoxStudios
+core = 7.x

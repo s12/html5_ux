@@ -1,0 +1,71 @@
+<?php
+function html5_ux_menu() {
+  $items['admin/config/development/html5_ux'] = array(
+    'title' => 'HTML5 User Experience Settings',
+    'description' => 'Configure settings associated with HTML5 User Experience.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('html5_ux_admin_settings_form', NULL),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'html5_ux.settings.inc',
+  );
+
+  return $items;
+}
+
+function html5_ux_page_build(&$page){
+  
+  $page["page_bottom"]["whitefox-menu"]=array(
+    "#weight"=>50,
+    "#markup"=>'<div class="whitefox-menu"></div>',
+  );
+
+  _html5_ux_get_assets();
+  
+}
+
+function _html5_ux_get_assets(){
+  $pre = "html5_ux_";
+
+  $var = array(
+    $pre."modernizr.js" => TRUE,
+    $pre."migrate.js" => TRUE,
+    $pre."fix.js" => TRUE,
+  );
+  
+  $opt = array();
+  
+  $opt[$pre."modernizr.js"] = array(
+    "group" => JS_LIBRARY,
+    "every_page" => TRUE,
+    "weight" => -21,
+  );
+  
+  $opt[$pre."migrate.js"] = array(
+    "group" => JS_LIBRARY,
+    "every_page" => TRUE,
+    "weight" => -19,
+  );
+  
+  $opt[$pre."fix.js"] = array(
+    "group" => JS_LIBRARY,
+    "every_page" => TRUE,
+    "weight" => -18,
+  );
+    
+  $path = drupal_get_path("module", "html5_ux");
+  
+  foreach($var as $name => $value){    
+    if(variable_get($name, $value)){
+      $file = str_replace($pre, "", $name);
+      
+      drupal_add_js($path."/js/".$file, $opt[$name]);
+    }
+  }
+  
+  if(variable_get($pre."fix.css", TRUE)){
+    drupal_add_css($path."/css/fix.css");
+  }
+  
+  drupal_add_css("$path/css/whitefox.css");
+  drupal_add_js("$path/js/whitefox.js",array("scope"=>"footer", "weight"=>5000, "every_page"=>TRUE));
+}
