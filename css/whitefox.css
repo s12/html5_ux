@@ -1,5 +1,5 @@
 .whitefox-menu {
-    background:rgba(25,25,25,.8) url("/sites/all/whitefox/img/whitefox-logo.png") no-repeat center right!important;
+    background:rgba(25,25,25,.8) url("../img/whitefox-logo.png") no-repeat center right!important;
     position:fixed!important;
     bottom:0!important;
     left:0!important;
