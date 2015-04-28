@@ -13,14 +13,12 @@ function html5_ux_menu() {
 }
 
 function html5_ux_page_build(&$page){
-  
   $page["page_bottom"]["whitefox-menu"]=array(
     "#weight"=>50,
     "#markup"=>'<div class="whitefox-menu"></div>',
   );
 
   _html5_ux_get_assets();
-  
 }
 
 function _html5_ux_get_assets(){
