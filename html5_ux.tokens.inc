@@ -23,7 +23,7 @@ function html5_ux_token_info(){
         
         "theme" => array(
           "name"        => t("Default Theme Path"),
-          "description" => t("eg: @path", array("@path" =>  drupal_get_path("theme", variable_get('theme_default', conf_path() . '/themes/jollyness')))),
+          "description" => t("eg: @path", array("@path" =>  drupal_get_path("theme", variable_get('theme_default', 'jollyness')))),
         ),
       ),
     ),
@@ -59,7 +59,7 @@ function html5_ux_tokens($type, $tokens, array $data = array(), array $options =
           break;
           
         case '':
-          $path = drupal_get_path("theme", variable_get('theme_default', conf_path() . '/themes/jollyness'));
+          $path = drupal_get_path("theme", variable_get('theme_default', 'jollyness'));
           $replacements[$original] = $sanitize ? check_plain($path) : $path;
           break;
       }
